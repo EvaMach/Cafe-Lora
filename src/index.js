@@ -1,4 +1,5 @@
 import './style.css';
+import { Layer } from '../src/Layer/index.js';
 
 // 3 ZPROVOZNĚNÍ NAVIGACE
 const navigation = document.querySelector('nav');
@@ -26,4 +27,24 @@ orderBtn.addEventListener('click', () => {
   document
     .querySelector('.drink__cup')
     .classList.toggle('drink__cup--selected');
+});
+
+// 5 INGREDIENCE JAKO KOMPONENTY
+const layers = [
+  {
+    color: '#feeeca',
+    label: 'mléčná pěna',
+  },
+  {
+    color: '#fed7b0',
+    label: 'teplé mléko',
+  },
+  {
+    color: '#613916',
+    label: 'espresso',
+  },
+];
+
+layers.forEach((layer) => {
+  document.querySelector('.drink__info').innerHTML += Layer(layer);
 });

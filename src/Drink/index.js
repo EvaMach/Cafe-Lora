@@ -34,9 +34,7 @@ export const Drink = (props) => {
     } else {
       orderBtn.textContent = 'Objednat';
     }
-    document
-      .querySelector('.drink__cup')
-      .classList.toggle('drink__cup--selected');
+    drink.querySelector('.drink__cup').classList.toggle('drink__cup--selected');
   });
 
   return drink;

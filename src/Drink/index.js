@@ -2,13 +2,8 @@ import './style.css';
 import { Layer } from '../Layer/index.js';
 
 export const Drink = (props) => {
-  const {
-    id,
-    name,
-    ordered,
-    image,
-    layers: { color, label },
-  } = props;
+  const { id, name, image, layers } = props;
+  let { ordered } = props;
 
   const drink = document.createElement('div');
   drink.classList.add('drink');
@@ -25,25 +20,24 @@ export const Drink = (props) => {
     <button class="order-btn">Objednat</button>
   </div>`;
 
-  const drinkData = {
-    id: 'romano',
-    name: 'Romano',
-    ordered: false,
-    image: 'https://apps.kodim.cz/daweb/cafelora/assets/cups/romano.png',
-    layers: [
-      {
-        color: '#fbdf5b',
-        label: 'citrón',
-      },
-      {
-        color: '#613916',
-        label: 'espresso',
-      },
-    ],
-  };
-
-  drinkData.layers.forEach((layer) => {
+  // layers in the props - no need for data here
+  // inserting some more innerHTML into innerHTML - selecting from the div directly and adding where needed
+  layers.forEach((layer) => {
     drink.querySelector('.drink__info').innerHTML += Layer(layer);
   });
+
+  const orderBtn = drink.querySelector('.order-btn');
+  orderBtn.addEventListener('click', () => {
+    ordered = ordered === false ? true : false;
+    if (ordered) {
+      orderBtn.textContent = 'Zrušit';
+    } else {
+      orderBtn.textContent = 'Objednat';
+    }
+    document
+      .querySelector('.drink__cup')
+      .classList.toggle('drink__cup--selected');
+  });
+
   return drink;
 };
